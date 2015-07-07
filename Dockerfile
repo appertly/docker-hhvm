@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER Jonathan Hawk <jonathan@appertly.com>
 
-ENV HHVM_VERSION 3.7.2~jessie
+ENV HHVM_VERSION 3.7.3~jessie
 
 # Install HHVM
 RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449 \
