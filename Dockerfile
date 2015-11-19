@@ -1,13 +1,13 @@
-FROM debian:jessie
+FROM ubuntu:trusty
 MAINTAINER Jonathan Hawk <jonathan@appertly.com>
 
-ENV HHVM_VERSION 3.10.1~jessie
+ENV HHVM_VERSION 3.10.1~trusty
 
 # Install HHVM
 RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449 \
-    && echo deb http://dl.hhvm.com/debian jessie main | tee /etc/apt/sources.list.d/hhvm.list \
+    && echo deb http://dl.hhvm.com/ubuntu trusty main | tee /etc/apt/sources.list.d/hhvm.list \
     && apt-get update \
-    && apt-get install -y --no-install-recommends ca-certificates hhvm=$HHVM_VERSION librsvg2-bin \
+    && apt-get install -y --no-install-recommends ca-certificates hhvm=$HHVM_VERSION ttf-liberation librsvg2-bin \
     && rm -rf /var/lib/apt/lists/*
 
 ADD php.ini /etc/hhvm/php.ini
