@@ -1,7 +1,7 @@
 FROM ubuntu:trusty
 MAINTAINER Jonathan Hawk <jonathan@appertly.com>
 
-ENV HHVM_VERSION 3.10.1~trusty
+ENV HHVM_VERSION 3.11.0~trusty
 
 # Install HHVM
 RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449 \
