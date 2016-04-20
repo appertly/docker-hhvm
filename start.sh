@@ -5,6 +5,8 @@ if [ "$MEMCACHED" != "" ]; then
     sed -i "s/\/var\/lib\/hhvm\/sessions/$MEMCACHED/" /etc/hhvm/php.ini
 fi
 
+update-ca-certificates
+
 DAEMON=/usr/bin/hhvm
 PIDFILE=/var/run/hhvm/pid
 CONFIG_FILE="/etc/hhvm/server.ini"
