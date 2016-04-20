@@ -8,7 +8,12 @@ RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e728
     && echo deb http://dl.hhvm.com/ubuntu trusty main | tee /etc/apt/sources.list.d/hhvm.list \
     && apt-get update \
     && apt-get install -y --no-install-recommends ca-certificates hhvm=$HHVM_VERSION ttf-liberation librsvg2-bin \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /tmp/* /var/tmp/* \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /var/log/apt/* \
+    && rm -rf /var/log/dpkg.log \
+    && rm -rf /var/log/bootstrap.log \
+    && rm -rf /var/log/alternatives.log
 
 ADD php.ini /etc/hhvm/php.ini
 ADD server.ini /etc/hhvm/server.ini
