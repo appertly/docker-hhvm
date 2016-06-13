@@ -1,13 +1,13 @@
 FROM ubuntu:trusty
 MAINTAINER Jonathan Hawk <jonathan@appertly.com>
 
-ENV HHVM_VERSION 3.13.1~trusty
+ENV HHVM_VERSION 3.14.0~trusty
 
 # Install HHVM
 RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449 \
     && echo deb http://dl.hhvm.com/ubuntu trusty main | tee /etc/apt/sources.list.d/hhvm.list \
     && apt-get update \
-    && apt-get install -y --no-install-recommends ca-certificates hhvm=$HHVM_VERSION ttf-liberation librsvg2-bin \
+    && apt-get install -y --no-install-recommends ca-certificates hhvm=$HHVM_VERSION libdouble-conversion1 liblz4-1 ttf-liberation librsvg2-bin \
     && rm -rf /tmp/* /var/tmp/* \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /var/log/apt/* \
