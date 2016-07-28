@@ -1,8 +1,17 @@
-#!/bin/sh
+#!/bin/bash
 
-if [ "$MEMCACHED" != "" ]; then
+if [[ "$MEMCACHED_PORT" =~ ^tcp://[0-9]{1,3}(\.[0-9]{1,3}){3}:[0-9]+$ ]]
+then
+# Support Docker link to a memcached server
+    sed -i "s/handler = files/handler = memcached/" /etc/hhvm/php.ini
+    sed -i "s/\/var\/lib\/hhvm\/sessions/${MEMCACHED_PORT:6}/" /etc/hhvm/php.ini
+    echo "session.gc_probability = 0" >> /etc/hhvm/php.ini
+elif [ "$MEMCACHED" != "" ]
+then
+# Support environment variable with custom list of servers
     sed -i "s/handler = files/handler = memcached/" /etc/hhvm/php.ini
     sed -i "s/\/var\/lib\/hhvm\/sessions/$MEMCACHED/" /etc/hhvm/php.ini
+    echo "session.gc_probability = 0" >> /etc/hhvm/php.ini
 fi
 
 update-ca-certificates
